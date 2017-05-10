@@ -1,0 +1,39 @@
+trained on: Jellyfish-Dec.json, TurtleFacts-Dec.json
+ tested on: Jellyfish-Jan.json
+
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+Jellyfish	Jellyfish
+total: 35	accuracy: 1.0

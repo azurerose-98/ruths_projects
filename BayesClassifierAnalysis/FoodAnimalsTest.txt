@@ -1,0 +1,14 @@
+trained on: Food-Nov.json, Animals-Nov.json
+ tested on: Food-Jan.json
+
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+Food	Food
+total: 10	accuracy: 1.0
