@@ -1,0 +1,118 @@
+#!/usr/bin/python
+
+import json
+from io import StringIO
+import string
+import os.path
+from os.path import dirname, abspath
+
+# a class to store all the attributes of each question
+class Question:
+
+    category = ""
+    attributes = {}
+
+    def __init__( self, category ):
+        self.category = category
+    
+    def add( self, key, d ):
+        self.attributes[key] = d
+
+    def get( self, key ):
+        return self.attributes.get(key)
+
+    def copy( self ):
+        new = Question( self.category )
+        new.attributes = self.attributes.copy()
+        return new
+
+# a class to store the frequency of each association
+class Category:
+
+    category = ""
+    instances = 0
+    jaicity = 0
+    jaipascity = 0
+
+    def __init__( self, category ):
+        self.category = category
+        self.instances+=1
+
+    def increment( self ):
+        self.instances+=1
+
+    def incrementjai( self ):
+        self.jaicity+=1
+    
+    def incrementpas( self ):
+        self.jaipascity+=1
+
+# organizes the raw data  
+jfile = "/JEOPARDY_QUESTIONS1.json"
+path = dirname(os.getcwd()) + jfile
+jsonfile = open(path,'r+').read()
+rawdata = json.loads(jsonfile)
+rawcities = open("worldcitiespop.txt").read()
+
+rcities = rawcities.split("\n")
+cities = []
+# extracts the city names from the raw data file
+g = 0
+while ( g<len(rcities) ):
+    h = rcities[g].split(",")
+    j = h[1]
+    cities.append(j)
+    g+=1
+num_cities = len(cities)
+
+questions = []
+x = 0
+while ( x<len(rawdata) ):
+    k = rawdata[x].keys()
+    v = rawdata[x].values()
+    i = Question( v[0] )
+    y = 1
+    while ( y<len(rawdata[x])):
+        i.add( k[y], v[y] )
+        y += 1
+    questions.append(i.copy())
+    x += 1
+num_questions = len(questions)
+
+# counts instances of categories and if the question / answer contains a city
+associations = {}
+
+a = 0
+while ( a<len(questions) ):
+    cat = questions[a].category
+    if ( associations.has_key(cat) == False ):
+        associations[cat] = Category(cat) # adds new category to associations
+    else:
+        associations[cat].increment() # increments instance of category
+    # determines if question contains city
+    quest = questions[a].get("question")
+    qwords = quest.lower()
+    t = 0
+    found = False
+    while ( t<num_cities and found == False ):
+        printable = set(string.printable)
+        city = filter(lambda x: x in printable, cities[t])
+        if ( city in qwords ):
+            associations[cat].incrementjai()
+            found = True
+        t+=1
+    # determines if answer contains city
+    answer = questions[a].get("answer")
+    awords = answer.lower()
+    s = 0
+    while ( s<num_cities and found == False ):
+        if ( cities[t] in awords ):
+            associations[cat].incrementjai()
+            atrue = True
+        t+=1
+    if ( found == False ):
+        associations[cat].incrementpas()
+    a+=1
+    print a
+
+print associations["HISTORY"].jaicity

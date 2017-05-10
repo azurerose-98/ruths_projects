@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+from io import StringIO
+
+c = open(cities.rtf).read()
+
+end = open(geographywords.txt)
+
+end.truncate()
+
+cities = c.split("\n")
+x = 0
+while ( x<len(cities) ):
+    i = cities[x].split("'")
+    s = i[1]
+    end.write(s + "\n")
+    x+=1
